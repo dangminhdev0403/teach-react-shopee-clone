@@ -1,4 +1,4 @@
-import { useAuth } from "@context/auth/AuthContext";
+import { useAuth } from "@hooks/useAuth";
 import { Navigate, Outlet } from "react-router";
 
 const RejectRoute = () => {
