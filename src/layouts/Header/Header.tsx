@@ -35,48 +35,49 @@ const Header = () => {
     <header className="max-w-6xl bg-[#fb5831] lg:max-w-full">
       <nav className="hidden justify-around pt-1.5 text-sm font-medium text-white lg:flex">
         <div className="flex gap-1">
-          <NavLink to={" "} className="relative mr-2 pr-2">
+          <NavLink to="/ok" className="relative mr-2 pr-2">
             Kênh Người Bán <BorderRight />{" "}
           </NavLink>
-          <NavLink to={" "} className="relative mr-2 pr-2">
+          <NavLink to="/ok" className="relative mr-2 pr-2">
             Trở thành Người bán Shopee <BorderRight />{" "}
           </NavLink>
-          <NavLink to={" "} className="relative mr-2 pr-2">
+          <NavLink to="/ok" className="relative mr-2 pr-2">
             Tải ứng dụng <BorderRight />{" "}
           </NavLink>
-          <NavLink to={" "}>
+
+          {/* Sửa lỗi: không để NavLink lồng nhau */}
+          <span className="relative mr-2 flex items-center gap-2 pr-2">
             Kết nối
-            <NavLink to={""} className={"ml-2"}>
-              <FontAwesomeIcon icon={faFacebook} />{" "}
+            <NavLink to="/ok" className="ml-2 inline-block">
+              <FontAwesomeIcon icon={faFacebook} />
             </NavLink>
-            <NavLink to={""} className={"ml-2"}>
-              <FontAwesomeIcon icon={faSquareInstagram} />{" "}
+            <NavLink to="/ok" className="ml-2 inline-block">
+              <FontAwesomeIcon icon={faSquareInstagram} />
             </NavLink>
-          </NavLink>
+          </span>
         </div>
         <div className="flex gap-1">
-          <NavLink to={" "} className="relative mr-2 pr-2">
+          <NavLink to="/ok" className="relative mr-2 pr-2">
             <FontAwesomeIcon icon={faBell} className="mr-1" />
             Thông báo
           </NavLink>
-          <NavLink to={" "} className="relative mr-2 pr-2">
+          <NavLink to="/ok" className="relative mr-2 pr-2">
             <FontAwesomeIcon icon={faCircleQuestion} className="mr-1" />
             Hỗ Trợ
           </NavLink>
-          <div className="relative mr-2 pr-2">
+          <div className="relative mr-2 flex items-center pr-2">
             <DropdownMenu
               label="Tiếng Việt"
               items={language}
               icon={<FontAwesomeIcon icon={faEarthAsia} />}
             />
-
             <FontAwesomeIcon icon={faChevronDown} className="ml-1" />
           </div>
           {/* <div>
-            <NavLink to={"/register"} className="relative mr-2 pr-2">
+            <NavLink to="/register" className="relative mr-2 pr-2">
               Đăng Ký <BorderRight />{" "}
             </NavLink>
-            <NavLink to={"/login"}>Đăng Nhập </NavLink>
+            <NavLink to="/login">Đăng Nhập </NavLink>
           </div> */}
           <div className="flex items-center gap-2">
             <DropdownMenu

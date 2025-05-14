@@ -5,8 +5,9 @@ interface ItemProductProps {
 }
 
 const ItemProduct = ({ ...props }: ItemProductProps) => {
+  
   return (
-    <div className="border border-gray-300">
+    <div className="cursor-pointer border border-gray-300 hover:border-3 hover:border-amber-500">
       <img
         className="h-[50%] w-full object-cover"
         src={`${props.img}`}
