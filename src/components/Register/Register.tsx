@@ -1,9 +1,9 @@
+import Button from "@components/Form/Button";
 import FormInput from "@components/Form/InputText/FormInput";
 import ROUTES from "@constants/routes";
-import { apiRegister } from "@service/api.service";
 import { rules } from "@utils/rules";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export interface RegisterForm {
   name: string;
@@ -16,18 +16,14 @@ const Register = () => {
     register,
     handleSubmit,
 
-    setError,
     getValues,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegisterForm>({
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
-
   const onSubmit = handleSubmit(async (data) => {
-    const res: boolean = await apiRegister(data, setError);
-    if (res) navigate(ROUTES.HOME);
+    console.log(data);
   });
 
   return (
@@ -78,9 +74,7 @@ const Register = () => {
         />
 
         <div>
-          <button className="curshadow mt-7 w-full cursor-pointer rounded bg-[#EE4D2D] p-2 hover:bg-orange-500">
-            Đăng ký
-          </button>
+          <Button title="Đăng ký" isSubmit={isSubmitting} />
         </div>
         <div className="divider mt-3.5">
           <span>HOẶC</span>

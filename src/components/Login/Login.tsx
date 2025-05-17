@@ -1,10 +1,8 @@
+import Button from "@components/Form/Button";
 import FormInput from "@components/Form/InputText/FormInput";
 import ROUTES from "@constants/routes";
-import { authSilce } from "@redux/slice/authSilce";
-import { apiLogin } from "@service/api.service";
 import { rules } from "@utils/rules";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 
 export interface UserLogin {
@@ -13,28 +11,19 @@ export interface UserLogin {
 }
 
 const Login = () => {
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
 
-    setError,
-
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<UserLogin>({
     mode: "onChange",
   });
 
-  // const navigate = useNavigate();
+  console.log(isSubmitting);
 
   const onSubmit = handleSubmit(async (data: UserLogin) => {
-    const res = await apiLogin(data, setError);
-    if (res) {
-      const { token, user } = res;
-      dispatch(authSilce.actions.login({ accessToken: token, user }));
-      // You can use res.token and res.user here
-      // navigate("/");
-    }
+    console.log(data);
   });
 
   return (
@@ -61,9 +50,7 @@ const Login = () => {
         />
 
         <div>
-          <button className="curshadow mt-7 w-full cursor-pointer rounded bg-[#EE4D2D] p-2 hover:bg-orange-500">
-            Đăng nhập
-          </button>
+          <Button title="Đăng nhập" isSubmit={isSubmitting} />
           <div className="mt-2 text-center lg:text-start">Quên mật khẩu ?</div>
         </div>
         <div className="divider">

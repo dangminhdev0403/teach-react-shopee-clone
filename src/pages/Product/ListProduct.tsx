@@ -4,10 +4,14 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useUsers } from "@hooks/useUsers";
 import ItemProduct from "@pages/Product/ItemProduct";
 import { filters, products, sorts } from "@utils/response";
 
 const ListProduct = () => {
+  const { data, isLoading, isError, error } = useUsers();
+  console.log({ data, isLoading, isError, error });
+
   return (
     <section className="grid h-full w-full bg-[#f5f5f5] py-6 lg:grid-cols-12 lg:px-20">
       <div className="lg:col-span-2">
