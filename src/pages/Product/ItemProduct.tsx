@@ -23,10 +23,10 @@ const ItemProduct = ({
 }: ItemProductProps) => {
   return (
     <Link to={`/product/${id}`}>
-      <div className="w-full rounded-sm border border-gray-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md">
+      <div className="group relative z-10 w-full rounded-sm border border-gray-200 bg-white transition hover:z-30 hover:-translate-y-0.5 hover:border-amber-500 hover:shadow-md">
         <div className="relative w-full overflow-hidden pt-[100%]">
           <img
-            className="absolute top-0 left-0 h-full w-full object-cover"
+            className="absolute top-0 left-0 z-0 h-full w-full object-cover"
             src={img}
             alt={name}
           />
@@ -50,6 +50,16 @@ const ItemProduct = ({
             <span>{location}</span>
           </div>
         </div>
+        {/* Button on hover */}
+        <button
+          className="absolute -bottom-9 left-0 z-20 w-full cursor-pointer bg-orange-500 py-2 text-sm text-white opacity-0 transition group-hover:opacity-100 hover:opacity-100"
+          onClick={(e) => {
+            e.preventDefault(); // Ngăn chuyển trang khi click vào nút
+            console.log("Tìm sản phẩm tương tự:", name);
+          }}
+        >
+          Tìm sản phẩm tương tự
+        </button>
       </div>
     </Link>
   );
