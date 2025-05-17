@@ -3,15 +3,14 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface FilterSidebarProps {
-  filters: [
-    {
-      id: string;
-      filter: {
-        name: string;
-        value: Array<{ id: string; value: string }>;
-      };
-    },
-  ];
+  filters: {
+    id: string;
+    filter: {
+      name: string;
+      value: { id: string; value: string }[];
+    };
+  }[];
+
   onClear: () => void;
   title: string;
 }
