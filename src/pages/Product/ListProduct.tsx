@@ -1,8 +1,7 @@
-import CheckBoxFilter from "@components/Filter";
+import { FilterSidebar } from "@components/ProductControls";
 import {
   faChevronLeft,
   faChevronRight,
-  faFilter,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ItemProduct from "@pages/Product/ItemProduct";
@@ -12,17 +11,13 @@ const ListProduct = () => {
   return (
     <section className="grid h-full w-full bg-[#f5f5f5] py-6 lg:grid-cols-12 lg:px-20">
       <div className="lg:col-span-2">
-        <div className="mb-6 flex items-center gap-2">
-          <FontAwesomeIcon icon={faFilter} style={{ color: "#4c4444" }} />
-          <h3 className="text-xl font-bold">Bộ lọc tìm kiếm</h3>
-        </div>{" "}
-        {filters.map((item) => (
-          <CheckBoxFilter key={item.id} filterData={item.filter} />
-        ))}
-        <button className="mt-2 w-full cursor-pointer rounded bg-[#ee4d2d] py-1 text-white">
-          Xoá tất cả
-        </button>
+        <FilterSidebar
+          filters={filters}
+          onClear={() => {}}
+          title="Bộ lọc tìm kiếm"
+        />
       </div>
+
       <div className="pl-2.5 lg:col-span-10">
         {/* Sort */}
         <div className="flex w-full justify-between gap-10 bg-gray-200 px-5 py-3.5 text-sm">
@@ -39,7 +34,6 @@ const ListProduct = () => {
               );
             })}
           </div>
-          {/* List Product */}
           <div className="hidden items-center justify-center lg:flex">
             <span className="text-amber-500">1</span>/9
             <div className="ml-3 flex gap-1">
@@ -53,7 +47,8 @@ const ListProduct = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+        {/* List Product */}
+        <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-5">
           {products.map((item) => (
             <ItemProduct key={item.id} {...item} />
           ))}

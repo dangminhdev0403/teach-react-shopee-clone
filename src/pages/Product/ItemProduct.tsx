@@ -1,21 +1,57 @@
+import { Link } from "react-router-dom";
+
 interface ItemProductProps {
+  id: number;
   name: string;
   img: string;
   price: number;
+  rating?: number;
+  sold?: number;
+  location?: string;
+  tag?: string;
 }
 
-const ItemProduct = ({ ...props }: ItemProductProps) => {
-  
+const ItemProduct = ({
+  id,
+  name,
+  img,
+  price,
+  rating = 4.8,
+  sold = 1200,
+  location = "TP.HCM",
+  tag,
+}: ItemProductProps) => {
   return (
-    <div className="cursor-pointer border border-gray-300 hover:border-3 hover:border-amber-500">
-      <img
-        className="h-[50%] w-full object-cover"
-        src={`${props.img}`}
-        alt={`${props.name}`}
-      />
-      <h5>{props.name}</h5>
-      <p className="text-amber-500">{props.price}</p>
-    </div>
+    <Link to={`/product/${id}`}>
+      <div className="w-full rounded-sm border border-gray-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md">
+        <div className="relative w-full overflow-hidden pt-[100%]">
+          <img
+            className="absolute top-0 left-0 h-full w-full object-cover"
+            src={img}
+            alt={name}
+          />
+        </div>
+        <div className="p-2 text-[1rem]">
+          <h5 className="line-clamp-2 h-10 leading-5 text-gray-800">
+            {tag && (
+              <span className="mr-0.5 rounded-sm bg-[#ee4d2d] px-0.5 text-xs text-white">
+                {tag}
+              </span>
+            )}
+            {name}
+          </h5>
+          <p className="mt-1 text-[#ee4d2d]">
+            {price.toLocaleString("vi-VN")}₫
+          </p>
+          <div className="mt-1 flex justify-between text-xs text-gray-500">
+            <span>
+              ⭐ {rating} | Đã bán {sold.toLocaleString("vi-VN")}
+            </span>
+            <span>{location}</span>
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
 
