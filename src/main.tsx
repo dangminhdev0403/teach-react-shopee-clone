@@ -3,14 +3,16 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
 
-import { AuthProvider } from "@context/auth/AuthContext";
 import { router } from "@pages";
+import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
+
+import { store } from "@redux/store";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
+    <Provider store={store}>
       <RouterProvider router={router} />
       <ToastContainer
         position="top-right"
@@ -25,6 +27,6 @@ createRoot(document.getElementById("root")!).render(
         theme="light"
         transition={Bounce}
       />
-    </AuthProvider>
+    </Provider>
   </StrictMode>,
 );

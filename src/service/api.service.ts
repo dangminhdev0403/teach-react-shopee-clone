@@ -9,22 +9,28 @@ import { toast } from "react-toastify";
 const apiLogin = async (
   data: UserLogin,
   setError: UseFormSetError<UserLogin>,
-): Promise<boolean> => {
+): Promise<{ token: string; user: { name: string; email: string } } | null> => {
   const enpoint: string = "/auth/login";
   toast.dismiss();
   try {
     const res: ApiResponseDefault = await instance.post(enpoint, data);
     if (res.status < 400) {
       toast.success("Đăng nhập thành công");
-      return true;
+
+      const { access_token, user } = res.data as {
+        access_token: string;
+        user: { name: string; email: string };
+      };
+
+      return { token: access_token, user };
     }
   } catch (error) {
     if (error instanceof ApiError) {
       showValidatorMessage(error, setError);
     }
-    return false;
+    return null;
   }
-  return false;
+  return null;
 };
 
 const apiRegister = async (

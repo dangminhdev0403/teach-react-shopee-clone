@@ -1,8 +1,10 @@
 import FormInput from "@components/Form/InputText/FormInput";
+import { authSilce } from "@redux/slice/authSilce";
 import { apiLogin } from "@service/api.service";
 import { rules } from "@utils/rules";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router";
 
 export interface UserLogin {
   email: string;
@@ -10,6 +12,7 @@ export interface UserLogin {
 }
 
 const Login = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -21,11 +24,16 @@ const Login = () => {
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data: UserLogin) => {
-    const res: boolean = await apiLogin(data, setError);
-    if (res) navigate("/");
+    const res = await apiLogin(data, setError);
+    if (res) {
+      const { token, user } = res;
+      dispatch(authSilce.actions.login({ accessToken: token, user }));
+      // You can use res.token and res.user here
+      // navigate("/");
+    }
   });
 
   return (
