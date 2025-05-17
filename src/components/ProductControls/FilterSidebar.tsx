@@ -3,7 +3,15 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface FilterSidebarProps {
-  filters: any[];
+  filters: [
+    {
+      id: string;
+      filter: {
+        name: string;
+        value: Array<{ id: string; value: string }>;
+      };
+    },
+  ];
   onClear: () => void;
   title: string;
 }
@@ -18,7 +26,7 @@ const FilterSidebar = ({ filters, onClear, title }: FilterSidebarProps) => (
       <CheckBoxFilter key={item.id} filterData={item.filter} />
     ))}
     <button
-      className="mt-2 w-full rounded bg-[#ee4d2d] py-1 text-white"
+      className="mt-2 w-full cursor-pointer rounded bg-[#ee4d2d] py-1 text-white"
       onClick={onClear}
     >
       Xoá tất cả
