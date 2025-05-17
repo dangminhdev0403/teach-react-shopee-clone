@@ -3,6 +3,7 @@ import Login from "@components/Login";
 import Register from "@components/Register";
 import ProtectedRoute from "@components/RouteGuards/ProtectedRoute";
 import RejectRoute from "@components/RouteGuards/RejectRoute";
+import ROUTES from "@constants/routes";
 import Auth from "@pages/Auth";
 
 import ListProduct from "@pages/Product";
@@ -14,13 +15,13 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <App />,
-        children: [{ path: "", element: <ListProduct /> }],
+        children: [{ path: ROUTES.HOME, element: <ListProduct /> }],
       },
       {
         element: <Auth />,
         children: [
-          { path: "login", element: <Login /> },
-          { path: "register", element: <Register /> },
+          { path: ROUTES.LOGIN, element: <Login /> },
+          { path: ROUTES.REGISTER, element: <Register /> },
         ],
       },
     ],

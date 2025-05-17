@@ -1,4 +1,5 @@
 import FormInput from "@components/Form/InputText/FormInput";
+import ROUTES from "@constants/routes";
 import { apiRegister } from "@service/api.service";
 import { rules } from "@utils/rules";
 import { useForm } from "react-hook-form";
@@ -26,7 +27,7 @@ const Register = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const res: boolean = await apiRegister(data, setError);
-    if (res) navigate("/");
+    if (res) navigate(ROUTES.HOME);
   });
 
   return (
@@ -114,7 +115,7 @@ const Register = () => {
       </div>
       <div className="mt-2 text-sm lg:mt-5 lg:text-center">
         Bạn đã có tài khoản ?{" "}
-        <Link to={"/login"} className="cursor-pointer text-[#EE4D2D]">
+        <Link to={ROUTES.LOGIN} className="cursor-pointer text-[#EE4D2D]">
           Đăng nhập
         </Link>
       </div>
